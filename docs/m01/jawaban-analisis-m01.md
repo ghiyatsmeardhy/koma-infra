@@ -1,56 +1,41 @@
-# Jawaban Analisis — Modul 01 (draf)
+# Jawaban Analisis — Modul 01
 
 | Hal | Isi |
 |---|---|
-| Nama | |
-| NIM | |
-| Kelompok | `k0_` |
-| Kasus | |
+| Nama | Ghiyats Thabularasa Meardhy |
+| NIM | `124450067` |
+| Kelompok | `k02` |
+| Kasus | Kirim Cepat Andalas |
 
-Draf ini ditulis sendiri, lalu disalin ke jendela **Soal analisis** pada tugas Modul 01 di
-Workbench. Bukti berasal dari akun, repo, dan catatan Anda sendiri; kasusnya dari kelompok Anda.
-Sebut kode bukti kasus (P3, P5, E1, E4, E5) saat memakai fakta atau angkanya.
+Lengkapi bukti akun dari `catatan-bukti.md` dan sebut kode bukti kasus yang relevan.
 
 ## Pertanyaan 1 — Langkah yang hilang
 
-Bukti (daftar keputusan di *Catatan Bagian A*, dua instance `coba-cli`, berkas dan baris di stack akhir)
-dan bukti kasus (P5):
-
-| Keputusan di Bagian A yang tidak tercatat | Kini tercatat di (berkas dan baris) |
+| Keputusan manual di Bagian A | Kini tercatat di |
 |---|---|
-| | |
-| | |
-| | |
+| Pemilihan AMI, tipe instance, dan konfigurasi jaringan | `stacks/m01-sandbox/main.tf` (data AMI, `instance_type`, dan IP publik dinonaktifkan) |
+| Pemberian nama dan identitas resource | `stacks/m01-sandbox/main.tf` (`Name`, `peran`) dan `providers.tf` (tag pemilik/kelompok) |
+| Pengulangan pembuatan resource dan pengelolaan hasilnya | `variables.tf`, `main.tf` (`for_each`), dan `outputs.tf` |
 
-Jawaban (kaitan dengan *snowflake system*, Morris hlm. 23, dan dengan insiden pemicu P5 kasus):
+Jawaban: *Snowflake system* adalah infrastruktur yang dibangun secara manual dan unik sehingga konfigurasi serta keputusan pembuatannya sulit diketahui atau diulang. Infrastruktur sebagai kode mencatat konfigurasi dalam berkas yang dapat ditinjau dan dibangun ulang. Ini relevan dengan P5: worker tunggal gagal, antrean tertahan enam jam, dan 6.200 event hilang; konfigurasi yang terdokumentasi membantu pemulihan yang konsisten, walaupun IaC saja tidak menjamin data aplikasi yang belum disimpan secara persisten.
 
 ## Pertanyaan 2 — Cloud dari sisi pengguna Free plan
 
-Bukti (tabel *Catatan Bagian D*, angka waktu A.1, A.2, B.4, halaman Billing/Budgets) dan bukti kasus
-(P3 atau E1):
-
-| Karakteristik ([S] hlm. 40–45) | Dialami / dibatasi / tidak | Bukti |
+| Karakteristik | Penilaian awal | Bukti yang perlu dicantumkan |
 |---|---|---|
-| On-demand provisioning | | |
-| Self-service | | |
-| Resource pooling, multi-tenancy | | |
-| Rapid elasticity | | |
-| Measured service | | |
-| Broad network access | | |
+| On-demand provisioning | Dialami | Waktu aktual dari apply EC2 |
+| Self-service | Dialami | Perintah OpenTofu/AWS CLI yang dijalankan sendiri |
+| Resource pooling, multi-tenancy | Dialami secara tidak langsung | AWS mengelola infrastruktur fisik bersama; pengguna tidak melihat tenant lain |
+| Rapid elasticity | Dibatasi oleh kuota/Free plan dan perlu diuji | Hasil perubahan ukuran/kapasitas aktual |
+| Measured service | Dialami, dengan keterbatasan tampilan kredit/tagihan | AWS Budgets/Billing yang benar-benar terlihat |
+| Broad network access | Dialami | Konsol web, CLI, dan API melalui jaringan |
 
-Jawaban (apakah batasan *Free plan* mengubah status akun sebagai cloud bagi Anda; satu karakteristik
-yang paling menentukan bagi organisasi pada kasus kelompok):
+Batasan Free plan tidak otomatis mengubah sifat layanan AWS sebagai cloud. Namun batas kuota, kredit, dan jenis resource yang dapat dipakai membatasi skala eksperimen. Untuk KCA, karakteristik yang paling menentukan adalah rapid elasticity karena beban meningkat 2,7 kali menjelang Lebaran (C2), sementara kapasitas perlu mengikuti lonjakan tersebut.
 
 ## Pertanyaan 3 — Idempoten bukan reproducible
 
-Bukti (`exit code = …` di C.1; pasangan ID `web` dan `api` dari potret 3 dan 4):
-
-Jawaban (perbedaan keduanya; mengapa idempoten belum tentu reproducible; satu contoh keadaan yang
-membuat stack gagal dibuat ulang dengan hasil identik):
+Jawaban: Idempoten berarti menjalankan apply kembali pada konfigurasi dan state yang sama tidak menghasilkan perubahan tambahan. Reproducible berarti infrastruktur dapat dihancurkan lalu dibangun kembali dengan konfigurasi yang sama dan karakteristik resource yang setara. Keduanya berbeda karena ID resource baru dapat berubah, AMI terbaru dapat berubah, kuota dapat habis, atau dependensi eksternal tidak tersedia. Bukti tugas harus memakai exit code plan dan dua pasang ID aktual dari potret 3 dan 4.
 
 ## Pertanyaan 4 — Replace dan in-place di produksi
 
-Bukti (potongan plan L.1 dan L.2) dan bukti kasus (E4: target ketersediaan; E5: target p95):
-
-Jawaban (dampak L.1 dan L.2 pada pengguna layanan inti kasus; peran `tofu plan` dan blok `moved`;
-apa yang tidak dapat dicegah keduanya):
+Jawaban: Perubahan ukuran `api` dapat memerlukan penghentian dan menjalankan ulang instance sehingga ada jeda. Perubahan AMI `web` ke Debian 12 memaksa penggantian instance, sehingga layanan web berisiko mengalami gangguan dan data lokal pada instance lama perlu diperhatikan. `tofu plan` memperlihatkan perubahan sebelum diterapkan; blok `moved` menjaga identitas resource ketika alamat konfigurasi berubah saat refaktor. Keduanya tidak menjamin zero downtime, tidak melindungi data yang tidak disimpan persisten, dan tidak menggantikan strategi deployment bertahap atau redundansi. Dampak perlu dikaitkan dengan SLA 99,9% (E4) dan target p95 di bawah 200 ms (E5).
