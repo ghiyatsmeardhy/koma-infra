@@ -1,32 +1,26 @@
-# TIM — Kelompok <k>
-
-Setiap anggota membangun infrastruktur di **akun AWS sendiri** dan di repo `koma-infra` miliknya.
-Kelompok berbagi kasus, keputusan, dan laporan akhir. Salin isi tabel yang sama ke `TIM.md` di repo
-setiap anggota.
+# TIM — Kelompok k02
 
 | Hal | Isi |
 |---|---|
-| ID kelompok | `k0_` (k01–k05) |
-| Kasus | <nama kasus, mis. Klinik Sehat Lampung> (`studi-kasus/kasus-<k>-….md`) |
-| Pemilik repo ini (NIM) | |
+| ID kelompok | `k02` |
+| Kasus | Kirim Cepat Andalas (`studi-kasus/kasus-k02-kirim-cepat-andalas.md`) |
+| Pemilik repo ini (NIM) | `124450067` — Ghiyats Thabularasa Meardhy |
 
 ## Anggota
 
 | NIM | Nama | Repo GitHub `koma-infra` |
 |---|---|---|
-| | | |
-| | | |
-| | | |
-| | | |
+| 124450067 | Ghiyats Thabularasa Meardhy | `ghiyatsmeardhy/koma-infra` |
+| (lengkapi dari kelompok) | (nama anggota) | (repo anggota) |
+| (lengkapi dari kelompok) | (nama anggota) | (repo anggota) |
+| (lengkapi dari kelompok) | (nama anggota) | (repo anggota) |
+| (lengkapi dari kelompok) | (nama anggota) | (repo anggota) |
 
 ## Peninjau per modul
 
-Setiap modul, pemilik repo membuka *pull request* dan meminta satu anggota lain meninjaunya
-(undang sebagai *collaborator* di GitHub). Peninjau bergilir.
-
 | Modul | Peninjau PR saya (NIM) | Saya meninjau PR milik (NIM) |
 |---|---|---|
-| m01 | | |
+| m01 | (isi NIM peninjau sebenarnya) | (isi NIM anggota sebenarnya) |
 | m02 | | |
 | m03 | | |
 | m04 | | |

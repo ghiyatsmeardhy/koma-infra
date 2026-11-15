@@ -1,76 +1,73 @@
 # Modul 01 — Catatan Bukti
 
-Isi berkas ini segera setelah setiap langkah penting, lalu commit bersama `bukti/bukti-m01.json`.
-Waktu ditulis dalam WIB. ID instance disalin dari terminal (`i-0…`); jangan menulis nomor akun AWS.
+Isi segera setelah setiap langkah. Waktu WIB dan ID instance harus disalin dari keluaran aktual. Jangan mengisi dengan perkiraan.
 
 | Hal | Isi |
 |---|---|
-| Nama | |
-| NIM | |
-| Kelompok | `k0_` |
-| Kasus | |
+| Nama | Ghiyats Thabularasa Meardhy |
+| NIM | `124450067` |
+| Kelompok | `k02` |
+| Kasus | Kirim Cepat Andalas |
 
 ## Log langkah
 
 | Langkah | Waktu (WIB) | Perintah | Hasil singkat |
 |---|---|---|---|
-| A.1 Konsol | | (konsol EC2) | |
-| A.2 CLI dua kali | | `aws ec2 run-instances …` | |
-| A.3 Cek + bongkar | | `koma cek m01`, `aws ec2 terminate-instances …` | |
-| B.1 Anggaran | | `tofu apply m00.tfplan` | |
-| B.4 Apply pertama | | `tofu apply m01.tfplan` | |
-| B.5 Potret 2 | | `koma cek m01` | |
-| C.1 Plan kedua | | `tofu plan -detailed-exitcode` | |
-| C.3 Refaktor | | `tofu apply m01.tfplan` | |
-| C.4 Potret 3 | | `koma cek m01` | |
-| D.1 Destroy + apply | | `tofu destroy`, `tofu apply` | |
-| D.1 Potret 4 | | `koma cek m01` | |
-| Latihan L.4 (potret 5) | | `tofu apply`, `koma cek m01` | |
-| E.1 Destroy + potret 6 | | `tofu destroy`, `koma cek m01`, `koma sisa` | |
-| Tugas: katalog kasus | | `tofu apply`, `koma cek m01` | |
-| Tugas: destroy akhir | | `tofu destroy`, `koma cek m01` | |
+| A.1 Konsol | (isi aktual) | Konsol EC2 | (ID dan hasil aktual) |
+| A.2 CLI dua kali | (isi aktual) | `aws ec2 run-instances` | (dua ID aktual) |
+| A.3 Cek + bongkar | (isi aktual) | `py alat\koma.py cek m01`; terminate instance Bagian A | (hasil aktual) |
+| B.1 Anggaran | (isi aktual) | `tofu apply m00.tfplan` | (hasil aktual) |
+| B.4 Apply pertama | (isi aktual) | `tofu apply m01.tfplan` | (ID web aktual) |
+| B.5 Potret 2 | (isi aktual) | `py alat\koma.py cek m01` | (nomor potret dan hasil aktual) |
+| C.1 Plan kedua | (isi aktual) | `tofu plan -detailed-exitcode` | (exit code aktual) |
+| C.3 Refaktor | (isi aktual) | `tofu apply m01.tfplan` | (web dipertahankan; api dibuat) |
+| C.4 Potret 3 | (isi aktual) | `py alat\koma.py cek m01` | (nomor potret dan hasil aktual) |
+| D.1 Destroy + apply | (isi aktual) | `tofu destroy`, lalu `tofu apply` | (waktu dan ID aktual) |
+| D.1 Potret 4 | (isi aktual) | `py alat\koma.py cek m01` | (nomor potret dan hasil aktual) |
+| Latihan L.4 (potret 5) | (isi aktual) | `tofu apply`, cek m01 | (hasil aktual) |
+| E.1 Destroy + potret 6 | (isi aktual) | `tofu destroy`, cek m01, `py alat\koma.py sisa` | (hasil aktual) |
+| Tugas: katalog kasus | (isi aktual) | `tofu apply`, cek m01 | (nomor potret dan hasil aktual) |
+| Tugas: destroy akhir | (isi aktual) | `tofu destroy`, cek m01 | (nomor potret dan hasil aktual) |
 
 ## Catatan Bagian A
 
-- Waktu konsol (klik pertama sampai `Running`): … menit … detik; jumlah isian yang disentuh: …
-- Waktu CLI (Enter sampai `running`): … detik
-- ID instance: `coba-konsol` …; dua `coba-cli` … dan …
-- Keputusan yang tidak tercatat di mana pun selain ingatan dan riwayat terminal saya:
-  - …
-  - …
-- Semua instance Bagian A sudah di-terminate (bukti: `describe-instances` kosong; `tanpa_instance_liar` lulus pada potret …): ya / belum
+- Waktu konsol: (isi aktual)
+- Waktu CLI: (isi aktual)
+- ID instance: (salin ID aktual)
+- Keputusan yang tidak tercatat di tempat lain: (isi berdasarkan pengalaman aktual)
+- Semua instance Bagian A sudah di-terminate: (ya/belum; sertakan bukti aktual)
 
 ## Catatan Bagian D
 
-- Plan kedua (C.1): exit code = 
-- ID sebelum destroy: `web` …, `api` …
-- ID sesudah apply ulang: `web` …, `api` …
-- Waktu destroy: … ; waktu apply ulang: …
-- Potret yang meluluskan `reproducible`: potret … dan potret …
+- Plan kedua (C.1): exit code = (isi aktual; seharusnya 0 jika tidak ada perubahan)
+- ID sebelum destroy: `web` (ID aktual), `api` (ID aktual)
+- ID sesudah apply ulang: `web` (ID aktual), `api` (ID aktual)
+- Waktu destroy: (aktual); waktu apply ulang: (aktual)
+- Potret yang meluluskan `reproducible`: (nomor potret aktual)
 
-### Model layanan
+## Model layanan
 
-| Komponen | IaaS / PaaS / SaaS / bukan model layanan | Alasan (lapisan yang saya sentuh dan yang tidak) |
+| Komponen | Model | Alasan |
 |---|---|---|
-| Instance EC2 | | |
-| AWS Budgets | | |
-| Repo GitHub | | |
-| Workbench (panel Tugas) | | |
-| `koma cek` | | |
+| Instance EC2 | IaaS | Pengguna memilih image, tipe instance, jaringan, dan mengelola OS tamu. |
+| AWS Budgets | (lengkapi dari pengalaman akun) | Layanan pengelolaan anggaran terkelola; pengguna mengatur batas dan notifikasi. |
+| Repo GitHub | (lengkapi) | (jelaskan layanan repositori yang digunakan) |
+| Workbench (panel Tugas) | (lengkapi) | (jelaskan layanan platform yang digunakan) |
+| `koma cek` | Bukan model layanan cloud | Alat CLI lokal untuk memeriksa resource dan menyimpan bukti. |
 
-### Karakteristik cloud yang dialami
+## Karakteristik cloud yang dialami
 
-| Karakteristik ([S] hlm. 40–45) | Dialami / dibatasi / tidak | Bukti hari ini (perintah, keluaran, atau angka) |
+| Karakteristik | Dialami / dibatasi / tidak | Bukti aktual |
 |---|---|---|
-| On-demand provisioning | | |
-| Self-service | | |
-| Resource pooling, multi-tenancy | | |
-| Rapid elasticity | | |
-| Measured service | | |
-| Broad network access | | |
+| On-demand provisioning | (lengkapi) | (waktu plan/apply aktual) |
+| Self-service | (lengkapi) | (perintah yang dijalankan sendiri) |
+| Resource pooling, multi-tenancy | (lengkapi) | (bukti layanan AWS) |
+| Rapid elasticity | (lengkapi) | (perubahan ukuran/kapasitas yang benar-benar diuji) |
+| Measured service | (lengkapi) | (Billing/Budgets aktual) |
+| Broad network access | (lengkapi) | (akses konsol/CLI/API aktual) |
 
 ## Potret Tugas
 
-- Katalog kasus (`default` di `variables.tf`): kunci … peran … ukuran …
-- Potret aktif katalog kasus: nomor …, waktu …
-- Potret bersih terakhir: nomor …, waktu …; `tugas_lulus`: …
+- Katalog default: `web` (peran `web`, ukuran `kecil`, OS `linux`) dan `api` (peran `api`, ukuran `kecil`, OS `linux`).
+- Potret aktif katalog kasus: (nomor dan waktu aktual)
+- Potret bersih terakhir: (nomor dan waktu aktual); `tugas_lulus`: (salin hasil aktual)

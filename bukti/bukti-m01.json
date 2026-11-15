@@ -1,0 +1,174 @@
+{
+  "skema": "koma-bukti/3",
+  "versi_koma": "3.4.0",
+  "nim": "124450067",
+  "kelompok": "k02",
+  "region": "ap-southeast-2",
+  "akun_sidik": "88ad5ca765627ae1",
+  "modul": "m01",
+  "dibuat": "2026-11-15T14:27:48Z",
+  "sumber": "lokal",
+  "hasil": [
+    {
+      "id": "instance_ada",
+      "lulus": true,
+      "pesan": "2 instance bertag nim=124450067, modul=m01"
+    },
+    {
+      "id": "dikelola_kode",
+      "lulus": true,
+      "pesan": "semua instance bertag managed-by=opentofu"
+    },
+    {
+      "id": "tag_pemilik",
+      "lulus": true,
+      "pesan": "tag nim=124450067 dan kelompok=k02"
+    },
+    {
+      "id": "preset_valid",
+      "lulus": true,
+      "pesan": "tipe instance t3.micro (kecil) atau t3.small (sedang)"
+    },
+    {
+      "id": "nama_konvensi",
+      "lulus": true,
+      "pesan": "tag Name berbentuk koma-124450067-m01-<kunci>"
+    },
+    {
+      "id": "berjalan",
+      "lulus": true,
+      "pesan": "state running"
+    },
+    {
+      "id": "tanpa_ip_publik",
+      "lulus": true,
+      "pesan": "tidak ada IP publik"
+    },
+    {
+      "id": "anggaran_ada",
+      "lulus": true,
+      "pesan": "budget koma-124450067-anggaran ada dengan batas <= USD 50"
+    },
+    {
+      "id": "dua_peran",
+      "lulus": true,
+      "pesan": "peran berbeda: ['api', 'web']"
+    },
+    {
+      "id": "tanpa_instance_liar",
+      "lulus": true,
+      "pesan": "tidak ada instance tanpa tag managed-by"
+    },
+    {
+      "id": "refaktor_tanpa_ganti",
+      "lulus": true,
+      "pesan": "instance lama dipertahankan saat for_each menambah instance baru (blok moved)"
+    },
+    {
+      "id": "reproducible",
+      "lulus": true,
+      "pesan": "dua potret dengan konfigurasi identik tetapi id instance berbeda"
+    },
+    {
+      "id": "bersih_akhir",
+      "lulus": false,
+      "pesan": "potret terakhir: tidak ada instance m01 (sudah destroy)"
+    }
+  ],
+  "ringkasan": {
+    "latihan_lulus": true,
+    "tugas_lulus": false,
+    "skor_latihan": 1.0
+  },
+  "riwayat": [
+    {
+      "waktu": "2026-11-15T12:59:12Z",
+      "aktif": true,
+      "instance": {
+        "koma-124450067-m01-web": {
+          "id": "i-0966721b60c3b5205",
+          "sidik": "fe85dfa08bf5e8b3c38491b9a06170028db4227032cc9b810b49ac2504117918"
+        }
+      },
+      "cek": {
+        "instance_ada": true,
+        "dikelola_kode": true,
+        "tag_pemilik": true,
+        "preset_valid": true,
+        "nama_konvensi": true,
+        "berjalan": true,
+        "tanpa_ip_publik": false,
+        "anggaran_ada": false,
+        "dua_peran": false
+      }
+    },
+    {
+      "waktu": "2026-11-15T13:42:24Z",
+      "aktif": true,
+      "instance": {
+        "koma-124450067-m01-web": {
+          "id": "i-075f2e9c7c45d37a2",
+          "sidik": "fe85dfa08bf5e8b3c38491b9a06170028db4227032cc9b810b49ac2504117918"
+        }
+      },
+      "cek": {
+        "instance_ada": true,
+        "dikelola_kode": true,
+        "tag_pemilik": true,
+        "preset_valid": true,
+        "nama_konvensi": true,
+        "berjalan": true,
+        "tanpa_ip_publik": true,
+        "anggaran_ada": false,
+        "dua_peran": false
+      }
+    },
+    {
+      "waktu": "2026-11-15T13:48:37Z",
+      "aktif": true,
+      "instance": {
+        "koma-124450067-m01-web": {
+          "id": "i-075f2e9c7c45d37a2",
+          "sidik": "fe85dfa08bf5e8b3c38491b9a06170028db4227032cc9b810b49ac2504117918"
+        }
+      },
+      "cek": {
+        "instance_ada": true,
+        "dikelola_kode": true,
+        "tag_pemilik": true,
+        "preset_valid": true,
+        "nama_konvensi": true,
+        "berjalan": true,
+        "tanpa_ip_publik": true,
+        "anggaran_ada": true,
+        "dua_peran": false
+      }
+    },
+    {
+      "waktu": "2026-11-15T14:27:48Z",
+      "aktif": true,
+      "instance": {
+        "koma-124450067-m01-api": {
+          "id": "i-0770b4bf682cb7fbc",
+          "sidik": "83117d16b8ae5bf715678e3fe5f48058c0f7e60b8bc36e7100feab7b78f2b69c"
+        },
+        "koma-124450067-m01-web": {
+          "id": "i-075f2e9c7c45d37a2",
+          "sidik": "fe85dfa08bf5e8b3c38491b9a06170028db4227032cc9b810b49ac2504117918"
+        }
+      },
+      "cek": {
+        "instance_ada": true,
+        "dikelola_kode": true,
+        "tag_pemilik": true,
+        "preset_valid": true,
+        "nama_konvensi": true,
+        "berjalan": true,
+        "tanpa_ip_publik": true,
+        "anggaran_ada": true,
+        "dua_peran": true
+      }
+    }
+  ],
+  "tanda_tangan": null
+}

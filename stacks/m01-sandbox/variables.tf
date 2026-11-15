@@ -1,26 +1,58 @@
+
 variable "nim" {
+  description = "Nomor induk mahasiswa"
   type        = string
-  description = "NIM praktikan; dipakai di tag dan nama resource"
-  validation {
-    condition     = can(regex("^[0-9]{8,10}$", var.nim))
-    error_message = "NIM harus 8-10 digit angka."
-  }
 }
 
 variable "kelompok" {
+  description = "Kode kelompok"
   type        = string
-  description = "ID kelompok kasus (k01-k05; k00 contoh dosen)"
-  validation {
-    condition     = can(regex("^k0[0-5]$", var.kelompok))
-    error_message = "Kelompok harus k01-k05 (k00 untuk contoh dosen)."
-  }
 }
 
 variable "region" {
+  description = "AWS region"
   type        = string
-  default     = "ap-southeast-2"
-  description = "Region proyek AWS (Indonesia: ap-southeast-2)"
 }
 
-# TODO Bagian C: tambahkan variabel `layanan` (map(object({ peran, ukuran, os })))
-# beserta validasinya. Lihat naskah Modul 01, C.2.
+variable "layanan" {
+  description = "Katalog layanan aplikasi"
+  type = map(object({
+    peran  = string
+    ukuran = string
+    os     = string
+  }))
+
+  default = {
+    web = {
+      peran  = "web"
+      ukuran = "kecil"
+      os     = "linux"
+    }
+
+    api = {
+      peran  = "api"
+      ukuran = "kecil"
+      os     = "linux"
+    }
+  }
+
+  validation {
+    condition = (
+      length(var.layanan) >= 2 &&
+      length(var.layanan) <= 3 &&
+      length(distinct([for layanan in values(var.layanan) : layanan.peran])) >= 2
+    )
+    error_message = "Katalog harus memiliki 2 sampai 3 layanan dengan minimal 2 peran berbeda."
+  }
+
+  validation {
+    condition = alltrue([
+      for nama, layanan in var.layanan :
+      can(regex("^[a-z0-9-]+$", nama)) &&
+      can(regex("^[a-z0-9-]+$", layanan.peran)) &&
+      contains(["kecil", "sedang"], layanan.ukuran) &&
+      contains(["linux", "debian12"], layanan.os)
+    ])
+    error_message = "Nama dan peran harus berupa slug. Ukuran hanya kecil/sedang dan OS hanya linux/debian12."
+  }
+}
